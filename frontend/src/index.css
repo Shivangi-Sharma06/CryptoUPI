@@ -1,0 +1,115 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Payment App Design System - Black & White Minimalist with Glow Effects */
+
+@layer base {
+  :root {
+    /* Core black and white palette */
+    --background: 0 0% 0%;
+    --foreground: 0 0% 100%;
+
+    --card: 0 0% 0%;
+    --card-foreground: 0 0% 100%;
+
+    --popover: 0 0% 0%;
+    --popover-foreground: 0 0% 100%;
+
+    --primary: 0 0% 100%;
+    --primary-foreground: 0 0% 0%;
+
+    --secondary: 0 0% 8%;
+    --secondary-foreground: 0 0% 100%;
+
+    --muted: 0 0% 5%;
+    --muted-foreground: 0 0% 70%;
+
+    --accent: 0 0% 12%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 0 0% 15%;
+    --input: 0 0% 10%;
+    --ring: 0 0% 30%;
+
+    --radius: 0.5rem;
+
+    /* Glow effects */
+    --text-glow: 0 0 10px rgba(255, 255, 255, 0.3);
+    --text-glow-hover: 0 0 15px rgba(255, 255, 255, 0.5);
+    --card-glow: 0 0 20px rgba(255, 255, 255, 0.1);
+    --button-glow: 0 0 25px rgba(255, 255, 255, 0.2);
+
+    /* Transitions */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-fast: all 0.15s ease-out;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+@layer components {
+  /* Glow text effects */
+  .text-glow {
+    text-shadow: var(--text-glow);
+  }
+
+  .text-glow-hover {
+    transition: var(--transition-smooth);
+  }
+
+  .text-glow-hover:hover {
+    text-shadow: var(--text-glow-hover);
+  }
+
+  /* Navigation link with underline animation */
+  .nav-link {
+    @apply relative transition-all duration-300 ease-out;
+    text-shadow: var(--text-glow);
+  }
+
+  .nav-link::after {
+    @apply absolute bottom-0 left-0 h-0.5 w-0 bg-primary transition-all duration-300 ease-out;
+    content: '';
+  }
+
+  .nav-link:hover::after {
+    @apply w-full;
+  }
+
+  .nav-link:hover {
+    text-shadow: var(--text-glow-hover);
+  }
+
+  /* Card with subtle glow */
+  .card-glow {
+    box-shadow: var(--card-glow);
+    transition: var(--transition-smooth);
+  }
+
+  .card-glow:hover {
+    box-shadow: var(--button-glow);
+  }
+
+  /* Button effects */
+  .btn-glow {
+    transition: var(--transition-smooth);
+    text-shadow: var(--text-glow);
+  }
+
+  .btn-glow:hover {
+    text-shadow: var(--text-glow-hover);
+    box-shadow: var(--button-glow);
+  }
+}
