@@ -1,6 +1,6 @@
-import Navigation from "../components/Navigation";
-import Hero from "../components/Hero";
-import CurrencyTable from "../components/CurrencyTable";
+import Navigation from "../Navbar/Navigation";
+import Hero from "./Hero";
+import CurrencyTable from "../CurrencyTable";
 
 const Index = () => {
   return (

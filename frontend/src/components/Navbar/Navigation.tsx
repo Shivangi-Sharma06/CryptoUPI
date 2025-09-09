@@ -10,21 +10,19 @@ const Navigation: React.FC = () => {
 
   const navItems: NavItem[] = [
     { name: "Home", path: "/" },
+      { name: "Submit QR", path: "/submitqr" },
     { name: "Past Payments", path: "/past-payments" },
-    { name: "Get Your QR", path: "/get-qr" },
-    { name: "Submit GPay", path: "/submit-gpay" }
   ];
 
   return (
     <nav className="w-full border-b border-border bg-background/95 backdrop-blur-sm sticky top-0 z-50">
       <div className="container mx-auto px-6 py-4">
         <div className="flex items-center justify-between">
-          {/* Logo */}
           <Link to="/" className="text-xl font-bold text-glow-hover">
-            Web3Pay
+            PayZy
           </Link>
 
-          {/* Navigation Links */}
+          {/*this is how you define the navigation links within this */}
           <div className="hidden md:flex space-x-8">
             {navItems.map((item) => (
               <Link

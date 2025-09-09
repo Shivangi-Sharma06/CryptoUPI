@@ -1,4 +1,4 @@
-import Navigation from "../components/Navigation";
+import Navigation from "../Navbar/Navigation";
 
 interface Transaction {
   id: string;
