@@ -15,7 +15,7 @@ export async function extractUpiId(imagePath) {
       if (!qrText.includes("upi://")) return reject("Not a UPI QR");
 
       const params = new URLSearchParams(qrText.split("?")[1] || "");
-      const upiId = params.get("pa");
+      const upiId = params.get("pa"); //pa is payee address
       if (!upiId) return reject("UPI ID not found");
 
       resolve(upiId);

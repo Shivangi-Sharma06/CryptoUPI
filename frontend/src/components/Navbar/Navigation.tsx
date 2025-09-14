@@ -10,8 +10,9 @@ const Navigation: React.FC = () => {
 
   const navItems: NavItem[] = [
     { name: "Home", path: "/" },
-      { name: "Submit QR", path: "/submitqr" },
+      { name: "Register", path: "/register" },
     { name: "Past Payments", path: "/past-payments" },
+    { name: "Gateway", path: "/gateway" },
   ];
 
   return (

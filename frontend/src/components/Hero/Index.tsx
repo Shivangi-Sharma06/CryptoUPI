@@ -1,6 +1,5 @@
 import Navigation from "../Navbar/Navigation";
 import Hero from "./Hero";
-import CurrencyTable from "../CurrencyTable";
 
 const Index = () => {
   return (
@@ -8,7 +7,6 @@ const Index = () => {
       <Navigation />
       <main>
         <Hero />
-        <CurrencyTable />
       </main>
     </div>
   );

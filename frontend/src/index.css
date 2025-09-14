@@ -2,114 +2,85 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Payment App Design System - Black & White Minimalist with Glow Effects */
-
 @layer base {
   :root {
-    /* Core black and white palette */
-    --background: 0 0% 0%;
-    --foreground: 0 0% 100%;
+    /* Futuristic Fintech Palette */
+    --background-start: 220 80% 8%;
+--background-end: 220 90% 15%;
+    --foreground: 0 0% 100%;           /* white text */
+    --border: 0 0% 100%;               /* white border */
 
-    --card: 0 0% 0%;
-    --card-foreground: 0 0% 100%;
-
-    --popover: 0 0% 0%;
-    --popover-foreground: 0 0% 100%;
-
-    --primary: 0 0% 100%;
-    --primary-foreground: 0 0% 0%;
-
-    --secondary: 0 0% 8%;
-    --secondary-foreground: 0 0% 100%;
-
-    --muted: 0 0% 5%;
-    --muted-foreground: 0 0% 70%;
-
-    --accent: 0 0% 12%;
-    --accent-foreground: 0 0% 100%;
-
-    --destructive: 0 84% 60%;
-    --destructive-foreground: 0 0% 100%;
-
-    --border: 0 0% 15%;
-    --input: 0 0% 10%;
-    --ring: 0 0% 30%;
-
-    --radius: 0.5rem;
-
-    /* Glow effects */
-    --text-glow: 0 0 10px rgba(255, 255, 255, 0.3);
-    --text-glow-hover: 0 0 15px rgba(255, 255, 255, 0.5);
-    --card-glow: 0 0 20px rgba(255, 255, 255, 0.1);
-    --button-glow: 0 0 25px rgba(255, 255, 255, 0.2);
-
-    /* Transitions */
-    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    --transition-fast: all 0.15s ease-out;
-  }
-}
-
-@layer base {
-  * {
-    @apply border-border;
+    /* Buttons */
+    --primary: 220 90% 55%;            /* vibrant fintech blue */
+    --primary-hover: 220 90% 45%;      /* darker hover */
+    --selected: 180 70% 45%;           /* teal/aqua */
+    --muted: 220 15% 35%;              /* grey-blue */
   }
 
+  /* Background gradient */
   body {
-    @apply bg-background text-foreground;
-  }
-}
-
-@layer components {
-  /* Glow text effects */
-  .text-glow {
-    text-shadow: var(--text-glow);
+    background: linear-gradient(
+      135deg,
+      hsl(var(--background-start)) 0%,
+      hsl(var(--background-end)) 100%
+    );
+    color: hsl(var(--foreground));
   }
 
-  .text-glow-hover {
-    transition: var(--transition-smooth);
+  /* Headings + glow */
+  h1, h2, h3, h4, h5, h6 {
+    color: hsl(var(--foreground));
+    text-shadow: 0 0 8px rgba(59, 130, 246, 0.6);
+    font-weight: 700;
   }
 
-  .text-glow-hover:hover {
-    text-shadow: var(--text-glow-hover);
+  p, span, li {
+    color: hsl(var(--foreground));
   }
 
-  /* Navigation link with underline animation */
-  .nav-link {
-    @apply relative transition-all duration-300 ease-out;
-    text-shadow: var(--text-glow);
+  /* Cards */
+  .card {
+    background: #0F1F4D; /* dark bluish */
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 12px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+    transition: all 0.3s ease;
+    padding: 1rem;
   }
 
-  .nav-link::after {
-    @apply absolute bottom-0 left-0 h-0.5 w-0 bg-primary transition-all duration-300 ease-out;
-    content: '';
+  .card:hover {
+    border-color: #3B82F6; /* Tailwind blue-500 */
+    box-shadow: 0 4px 15px rgba(59,130,246,0.5);
+    transform: translateY(-3px);
   }
 
-  .nav-link:hover::after {
-    @apply w-full;
+  /* Buttons */
+  .btn {
+    @apply px-5 py-2.5 rounded-xl font-semibold;
+    background: hsl(var(--primary));
+    color: white;
+    border: 1px solid hsl(var(--border));
+    transition: all 0.3s ease;
   }
 
-  .nav-link:hover {
-    text-shadow: var(--text-glow-hover);
+  .btn:hover {
+    background: linear-gradient(90deg, #2563EB, #14B8A6);
+    box-shadow: 0 0 12px rgba(59,130,246,0.6);
   }
 
-  /* Card with subtle glow */
-  .card-glow {
-    box-shadow: var(--card-glow);
-    transition: var(--transition-smooth);
+  .btn-selected {
+    @apply px-5 py-2.5 rounded-xl font-semibold;
+    background: hsl(var(--selected));
+    color: white;
+    border: 1px solid hsl(var(--border));
+    box-shadow: 0 0 14px rgba(20,184,166,0.6);
   }
 
-  .card-glow:hover {
-    box-shadow: var(--button-glow);
-  }
-
-  /* Button effects */
-  .btn-glow {
-    transition: var(--transition-smooth);
-    text-shadow: var(--text-glow);
-  }
-
-  .btn-glow:hover {
-    text-shadow: var(--text-glow-hover);
-    box-shadow: var(--button-glow);
+  .btn-muted {
+    @apply px-5 py-2.5 rounded-xl font-medium;
+    background: hsl(var(--muted));
+    color: hsl(var(--foreground));
+    border: 1px solid hsl(var(--border));
+    opacity: 0.85;
   }
 }

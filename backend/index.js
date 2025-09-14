@@ -158,6 +158,27 @@ app.get("/api/native-balance", async (req, res) => {
   }
 });
 
+// check the upi id exist
+// app.post("/check-upi", async (req, res) => {
+//   try {
+//     const { upiId } = req.body;
+//     if (!upiId) {
+//       return res.status(400).json({ error: "UPI ID is required" });
+//     }
+
+//     const existing = await QRData.findOne({ upiId: upiId.trim() });
+
+//     if (existing) {
+//       return res.json({ exists: true });
+//     } else {
+//       return res.json({ exists: false });
+//     }
+//   } catch (err) {
+//     console.error("Error in /check-upi:", err);
+//     res.status(500).json({ error: err.toString() });
+//   }
+// });
+
 
 app.listen(3000, async () => {
   console.log("Server running on port 3000");

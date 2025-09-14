@@ -3,7 +3,8 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./components/Hero/Index";
 import PastPayments from "./components/PastPayments/PastPayment";
-import SubmitQR from "./components/Home/SubmitQR";
+import Register from "./components/Home/Register";
+import Gateway from "./components/Gateway/gateway";
 import { createThirdwebClient } from "thirdweb";
 import { ThirdwebProvider, ConnectButton } from "thirdweb/react";
 
@@ -22,7 +23,8 @@ const App = () => (
           <Routes>
             <Route path="/" element={<Index />} />
             <Route path="/past-payments" element={<PastPayments />} />
-            <Route path="/submitqr" element={<SubmitQR/>} />
+            <Route path="/register" element={<Register />} />
+            <Route path="/gateway" element={<Gateway />} />
           </Routes>
         </BrowserRouter>
       </ThirdwebProvider>

@@ -1,12 +1,10 @@
-import { Link } from "react-router-dom";
-import { Button } from "../button";
-
+import { Button } from "../ui/button";
 const Hero: React.FC = () => {
   return (
     <section className="min-h-[80vh] flex items-center justify-center px-6 py-20">
       <div className="container mx-auto text-center max-w-7xl">
         <h5 className="text-2xl md:text-7xl font-bold mb-6 text-glow">
-          PayZy - WEB3 UPI Payments Using Your GPay QR 
+          KryptUPI - WEB3 UPI Payments Using Your GPay QR 
         </h5>
         
         <p className="text-x7 md:text-2xl mb-8 text-muted-foreground max-w-2xl mx-auto leading-relaxed">
