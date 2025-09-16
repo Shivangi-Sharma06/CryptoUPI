@@ -1,3 +1,10 @@
 {
-    "git.ignoreLimitWarning": true
+  "git.ignoreLimitWarning": true,
+  
+    "solidity.packageDefaultDependenciesDirectory": "./node_modules",
+    "solidity.packageDefaultDependenciesContractsDirectory": "",
+    "solidity.defaultCompiler": "0.8.19",
+    "solidity.compileUsingRemoteVersion": "0.8.19",
+    "solidity.enabledAsYouTypeCompilerWarnings": true,
+
 }

@@ -1,8 +1,10 @@
 import { useState } from "react";
+import { CONTRACT_ADDRESS, CONTRACT_ABI } from "../../contractConfig";
 import Navigation from "../Navbar/Navigation";
 import { Button } from "../ui/button";
 import { useActiveAccount } from "thirdweb/react";
 import { useNavigate } from "react-router-dom";
+import { ethers } from "ethers";
 
 const Register: React.FC = () => {
   const [qrImage, setQrImage] = useState<File | null>(null);
@@ -15,7 +17,42 @@ const Register: React.FC = () => {
 
   const navigate = useNavigate();
 
-  // qr checks
+  // ---------- Contract Setup ----------
+  const getContract = async () => {
+    if (!window.ethereum) {
+      alert("Please install MetaMask!");
+      return null;
+    }
+
+    // ✅ ethers v5 compatible provider
+    const provider = new ethers.providers.Web3Provider(window.ethereum);
+    const signer = provider.getSigner();
+    return new ethers.Contract(CONTRACT_ADDRESS, CONTRACT_ABI, signer);
+  };
+
+  const registerUPIOnChain = async (upi: string) => {
+    try {
+      const contract = await getContract();
+      if (!contract) return false;
+
+      const tx = await contract.registerUPI(upi);
+      await tx.wait();
+      alert("✅ UPI successfully registered on-chain!");
+      return true;
+    } catch (err: any) {
+      if (err?.reason) {
+        alert(`Error: ${err.reason}`);
+      } else if (err?.message) {
+        alert(`Error: ${err.message}`);
+      } else {
+        alert("Transaction failed or reverted.");
+      }
+      console.error(err);
+      return false;
+    }
+  };
+
+  // ---------- QR Code Submission ----------
   const submitQrCode = async () => {
     if (!qrImage) {
       alert("Please upload your QR code image.");
@@ -53,38 +90,27 @@ const Register: React.FC = () => {
     }
   };
 
-//   const verifyUpi = () => {
-//   if (!extractedUpi || !walletAddress) {
-//     alert("UPI ID or Wallet Address missing!");
-//     return;
-//   }
+  // ---------- Verify & Register UPI ----------
+  const verifyAndRegisterUPI = async () => {
+    if (!extractedUpi || !walletAddress) {
+      alert("UPI ID or Wallet Address missing!");
+      return;
+    }
 
-//   const verifyUpi = /^\d{10}@[a-zA-Z0-9]+$/;
+    // Basic check: contains '@'
+    const hasAtSymbol = /@/.test(extractedUpi);
+    if (!hasAtSymbol) {
+      alert("Invalid UPI format! It should contain '@'.");
+      return;
+    }
 
-//   if (!verifyUpi.test(extractedUpi.trim())) {
-//     alert("Invalid format!");
-//     return;
-//   }
-//   alert("UPI ID format is valid. Proceeding to verification...");
-//   navigate("/verification");
-// };
-
-  const verifyUpi = () => {
-  if (!extractedUpi || !walletAddress) {
-    alert("UPI ID or Wallet Address missing!");
-    return;
-  }
-  // /@ is the only constraint
-  const hasAtSymbol = /@/.test(extractedUpi);
-
-  if (!( hasAtSymbol)) {
-    alert("Invalid format! It should contain a 10-digit number and '@'.");
-    return;
-  }
-  alert("format is valid.");
-};
-
-
+    // Call smart contract to register UPI
+    const success = await registerUPIOnChain(extractedUpi);
+    if (success) {
+      // Optional: navigate to verification page
+      // navigate("/verification");
+    }
+  };
 
   return (
     <div className="min-h-screen bg-background">
@@ -112,7 +138,6 @@ const Register: React.FC = () => {
                 Connect Your Wallet
               </h2>
             </div>
-
             {!isConnected ? (
               <p className="text-muted-foreground">
                 Please connect your wallet using the ConnectButton in the Navbar.
@@ -195,10 +220,10 @@ const Register: React.FC = () => {
                 </h2>
               </div>
               <Button
-                onClick={verifyUpi}
+                onClick={verifyAndRegisterUPI}
                 className="btn-glow bg-green-600 text-black hover:bg-green-700"
               >
-                  Go to Verification
+                Go to Verification
               </Button>
             </div>
           )}
@@ -209,6 +234,3 @@ const Register: React.FC = () => {
 };
 
 export default Register;
-
-
-

@@ -11,7 +11,6 @@ const Navigation: React.FC = () => {
   const navItems: NavItem[] = [
     { name: "Home", path: "/" },
       { name: "Register", path: "/register" },
-    { name: "Past Payments", path: "/past-payments" },
     { name: "Gateway", path: "/gateway" },
   ];
 
